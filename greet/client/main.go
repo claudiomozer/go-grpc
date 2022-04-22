@@ -1,6 +1,7 @@
 package main
 
 import (
+	pb "greet/greetpb"
 	"log"
 
 	"google.golang.org/grpc"
@@ -17,4 +18,7 @@ func main() {
 	}
 
 	defer conn.Close()
+
+	client := pb.NewGreetServiceClient(conn)
+	doGreet(client)
 }
