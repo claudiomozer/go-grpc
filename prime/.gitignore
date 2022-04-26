@@ -1,0 +1,4 @@
+/bin/
+/primepb/prime_grpc.pb.go
+/primepb/prime.pb.go
+/go.sum
