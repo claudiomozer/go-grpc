@@ -8,3 +8,9 @@ clean:
 	rm ./greetpb/greet_grpc.pb.go
 	rm ./bin/server
 	rm ./bin/client
+
+up:
+	./bin/server
+
+greet:
+	./bin/client

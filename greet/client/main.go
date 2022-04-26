@@ -20,5 +20,6 @@ func main() {
 	defer conn.Close()
 
 	client := pb.NewGreetServiceClient(conn)
-	doGreet(client)
+	// doGreet(client)
+	doGreetManyTimes(client)
 }
