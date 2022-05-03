@@ -1,0 +1,3 @@
+/bin/**
+/averagepb/**.go
+/go.sum
