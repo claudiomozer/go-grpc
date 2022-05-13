@@ -7,6 +7,8 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+
+	"google.golang.org/grpc/reflection"
 )
 
 var serverAddress string = "localhost:50051"
@@ -41,6 +43,7 @@ func main() {
 
 	s := grpc.NewServer(opts...) // ... it's the spread operator on golang
 	pb.RegisterGreetServiceServer(s, &Server{})
+	reflection.Register(s)
 
 	if error = s.Serve(lis); error != nil {
 		log.Fatalf("Failed to serve on %v\n", error)
