@@ -6,9 +6,10 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 )
 
-var serverAddress string = "0.0.0.0:50051"
+var serverAddress string = "localhost:50051"
 
 type Server struct {
 	pb.GreetServiceServer
@@ -22,7 +23,23 @@ func main() {
 	}
 
 	log.Printf("Listening on %s\n", serverAddress)
-	s := grpc.NewServer()
+
+	tls := true
+	opts := []grpc.ServerOption{}
+
+	if tls {
+		certFile := "/home/claudio/workspace/go/src/go-course/ssl/server.crt"
+		keyFile := "/home/claudio/workspace/go/src/go-course/ssl/server.pem"
+		creds, err := credentials.NewServerTLSFromFile(certFile, keyFile)
+
+		if err != nil {
+			log.Fatalf("Error on loading certificates: %v\n", err)
+		}
+
+		opts = append(opts, grpc.Creds(creds))
+	}
+
+	s := grpc.NewServer(opts...) // ... it's the spread operator on golang
 	pb.RegisterGreetServiceServer(s, &Server{})
 
 	if error = s.Serve(lis); error != nil {
