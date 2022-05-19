@@ -22,5 +22,6 @@ func main() {
 	defer connection.Close()
 
 	client := pb.NewBlogServiceClient(connection)
-	createBlog(client)
+	id := createBlog(client)
+	readBlog(client, id)
 }
