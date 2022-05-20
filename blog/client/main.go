@@ -23,5 +23,7 @@ func main() {
 
 	client := pb.NewBlogServiceClient(connection)
 	id := createBlog(client)
-	readBlog(client, id)
+	blog := readBlog(client, id)
+	blog.Title = "Craudios modificou"
+	updateBlog(client, blog)
 }
