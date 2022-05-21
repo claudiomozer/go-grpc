@@ -26,4 +26,5 @@ func main() {
 	blog := readBlog(client, id)
 	blog.Title = "Craudios modificou"
 	updateBlog(client, blog)
+	listBlogs(client)
 }
