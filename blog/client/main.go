@@ -27,4 +27,5 @@ func main() {
 	blog.Title = "Craudios modificou"
 	updateBlog(client, blog)
 	listBlogs(client)
+	deleteBlog(client, id)
 }
